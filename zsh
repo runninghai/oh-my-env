@@ -1,78 +1,10 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-# Path to your oh-my-zsh installation.
-export ZSH="/Users/bytedance/.oh-my-zsh"
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes ZSH_THEME="Dracula"
-ZSH_THEME="Dracula"
-
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in $ZSH/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
-
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to use hyphen-insensitive completion.
-# Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to automatically update without prompting.
-# DISABLE_UPDATE_PROMPT="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS="true"
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# Caution: this setting can cause issues with multiline prompts (zsh 5.7.1 and newer seem to work)
-# See https://github.com/ohmyzsh/ohmyzsh/issues/5765
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# You can set one of the optional three formats:
-# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# or set a custom format using the strftime function format specifications,
-# see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions kubectl)
-
-source $ZSH/oh-my-zsh.sh
-
+plugins=($plugins git zsh-autosuggestions kubectl)
 # User configuration
-
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -98,40 +30,12 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #alias code=/Users/bytedance/Documents/code/git
 alias tnew="tmux new -s"
-alias dev="ssh gaohao.wherever@10.37.153.131"
-#alias ebpf="ssh gaohao.wherever@10.37.153.131"
-alias kinit="kinit gaohao.wherever@BYTEDANCE.COM"
-#alias relay="ssh relay.byted.org"
-alias uml="java -DPLANTUML_LIMIT_SIZE=16384 -jar /Users/bytedance/Documents/doc/plantuml/plantuml.jar "
 alias rl="source ~/.zshrc"
 alias vim="nvim"
 alias vi="nvim"
 
-
-# go configuration
-export GOPATH=/Users/bytedance/go
-export GOROOT=/usr/local/Cellar/go@1.18/1.18.10/libexec
-export GO111MODULE=on
-export GOPROXY="https://go-mod-proxy.byted.org,https://goproxy.cn,https://proxy.golang.org,direct"
-export GOPRIVATE="*.byted.org,*.everphoto.cn,git.smartisan.com"
-export GOSUMDB="sum.golang.google.cn"
-
-export PATH="/Applications/calibre.app/Contents/MacOS/:$PATH"
-export PATH="/Users/bytedance/Documents/code/git/code2ebook:$PATH"
-export PATH="/usr/local/opt/openjdk/bin:$PATH"
-export PATH="/Users/bytedance/go/bin:$PATH"
-export PATH="/usr/local/bin/:$PATH"
-export PATH="/Users/bytedance/Documents/guitar/lilypond/bin:$PATH"
-export PATH="/usr/local/opt/go@1.18/bin:$PATH"
-export PATH="/Applications/GoLand.app/Contents/MacOS:$PATH"
-export PATH="$GOPATH/bin:$PATH"
-
-export ENVIRONMENT=offline
-export K3D_CLUSTER_NAME=local
 export LOGPATH="$HOME/Documents/code/git/log"
 source "$HOME/.cargo/env"
-
-export PYTHONPATH=/usr/local/lib/python3.9/site-packages/
 
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
@@ -170,15 +74,6 @@ function genePlantuml {
     java -DPLANTUML_LIMIT_SIZE=16384 -jar \
         ${PLANTUML_PATH}/plantuml.jar $project
     rm $project
-}
-
-# move downloaded file in 10 mini to current dir or $1
-function mvDownloadFile {
-    target=.
-    if [[ -n $1 ]];then
-        target=$1
-    fi
-    find /Users/bytedance/Downloads -type f -mtime -10m -exec mv {} $target \;
 }
 
 # screencapture cronjob
@@ -220,7 +115,6 @@ function killQuick {
     fi
     sleep 1
 }
-defaults write org.vim.MacVim MMNativeFullScreen 0
 
 # log funcs
 function fetchImage {
@@ -246,22 +140,22 @@ function fetchImage {
 }
 
 function codeStatistic {
-sum=0
-gtype=$1
-suffi=$2
-for file in *;do
-    if [[ -f $file ]]; then
-        if [[ "$file" == *"$suffi"."$gtype" ]];then
-            res=$(wc -l < $file)
-            printf "%-10s %-10s\n" "$res" "$file"
-            sum=$((sum + res)) 
+    sum=0
+    gtype=$1
+    suffi=$2
+    for file in *;do
+        if [[ -f $file ]]; then
+            if [[ "$file" == *"$suffi"."$gtype" ]];then
+                res=$(wc -l < $file)
+                printf "%-10s %-10s\n" "$res" "$file"
+                sum=$((sum + res)) 
+            fi
         fi
-    fi
-    if [[ -d $file ]]; then
-        pushd $file > /dev/null
-        find . -name "*$suffi.$gtype" -exec wc -l {}  \;|awk -v file="$file" '{sum = sum + $1}END{printf("%-10s %-10s\n",sum,file)}'
-        popd > /dev/null
-    fi
-done
-echo $sum
+        if [[ -d $file ]]; then
+            pushd $file > /dev/null
+            find . -name "*$suffi.$gtype" -exec wc -l {}  \;|awk -v file="$file" '{sum = sum + $1}END{printf("%-10s %-10s\n",sum,file)}'
+            popd > /dev/null
+        fi
+    done
+    echo $sum
 }
