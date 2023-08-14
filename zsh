@@ -1,47 +1,29 @@
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
+# plugins config
 plugins=($plugins git zsh-autosuggestions kubectl)
-# User configuration
-# export MANPATH="/usr/local/man:$MANPATH"
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+export LOGPATH="$HOME/Documents/code/git/log"
 
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+# dracula config
+export DRACULA_DISPLAY_TIME=1
+export DRACULA_DISPLAY_CONTEXT=1
+export DRACULA_DISPLAY_NEW_LINE=1
 
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-#alias code=/Users/bytedance/Documents/code/git
+# alias
 alias tnew="tmux new -s"
 alias rl="source ~/.zshrc"
 alias vim="nvim"
 alias vi="nvim"
 
-export LOGPATH="$HOME/Documents/code/git/log"
+# rust configuration
 source "$HOME/.cargo/env"
 
+# autojump
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
 bindkey -v
 bindkey "^R"      history-incremental-search-backward 
 
+# thefuck configuration
 eval $(thefuck --alias)
 
 function generateMobi {
@@ -61,7 +43,6 @@ function generateMobi {
     rm src2html.tags
 }
 
-export PLANTUML_PATH=/Users/bytedance/Documents/doc/plantuml/
 function plantuml {
     cat $1 | java -DPLANTUML_LIMIT_SIZE=16384 -jar \
         ${PLANTUML_PATH}/plantuml.jar -pipe \
@@ -74,20 +55,6 @@ function genePlantuml {
     java -DPLANTUML_LIMIT_SIZE=16384 -jar \
         ${PLANTUML_PATH}/plantuml.jar $project
     rm $project
-}
-
-# screencapture cronjob
-function screencaptureLog {
-    store=/Users/bytedance/cronjob/screencapture/pic
-
-    # clean old pics
-    cd $store
-    find . -type f -mtime +7 -exec rm -f {} \;
-
-    prefix=$(date +"%h-%M_%y.%m.%d")
-    screencapture -D 1 ${store}/${prefix}_1.jpg
-    screencapture -D 2 ${store}/${prefix}_2.jpg
-    screencapture -D 3 ${store}/${prefix}_3.jpg
 }
 
 function addDailyLog {
@@ -106,14 +73,6 @@ function dailyLog {
     today=$(date +"%d")
     log=log/$year/$month/$today
     echo $log
-}
-
-function killQuick {
-    pid=`ps axu|grep QuickTime|grep -v grep|awk '{print $2}'`
-    if [ ! -z "$pid" ];then
-        kill $pid
-    fi
-    sleep 1
 }
 
 # log funcs
