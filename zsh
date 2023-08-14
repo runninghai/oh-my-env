@@ -118,3 +118,10 @@ function codeStatistic {
     done
     echo $sum
 }
+
+function neovimUpgrade {
+    sudo cp -rf bin/* /usr/local/bin/
+    sudo cp -rf man/* /usr/local/man/
+    sudo cp -rf lib/* /usr/local/lib/
+    sudo cp -rf share/* /usr/local/share/
+}
