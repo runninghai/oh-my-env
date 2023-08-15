@@ -8,6 +8,7 @@ export DRACULA_DISPLAY_TIME=1
 export DRACULA_DISPLAY_CONTEXT=1
 export DRACULA_DISPLAY_NEW_LINE=1
 
+export LUA_PATH="$CODEPATH/git/plenary.nvim/lua/?.lua;;"
 # alias
 alias tnew="tmux new -s"
 alias rl="source ~/.zshrc"
@@ -19,6 +20,7 @@ source "$HOME/.cargo/env"
 
 # autojump
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
+[ -f /usr/share/autojump/autojump.sh ] && . /usr/share/autojump/autojump.sh
 
 bindkey -v
 bindkey "^R"      history-incremental-search-backward 
