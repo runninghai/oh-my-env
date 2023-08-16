@@ -101,7 +101,6 @@ function fetchImage {
 }
 
 function codeStatistic {
-    sum=0
     gtype=$1
     suffi=$2
     for file in *;do
@@ -109,16 +108,14 @@ function codeStatistic {
             if [[ "$file" == *"$suffi"."$gtype" ]];then
                 res=$(wc -l < $file)
                 printf "%-10s %-10s\n" "$res" "$file"
-                sum=$((sum + res)) 
             fi
         fi
         if [[ -d $file ]]; then
             pushd $file > /dev/null
-            find . -name "*$suffi.$gtype" -exec wc -l {}  \;|awk -v file="$file" '{sum = sum + $1}END{printf("%-10s %-10s\n",sum,file)}'
+            find . -name "*$suffi.$gtype" -exec wc -l {}  \;|awk -v file="$file" 'BEGIN{sum=0}{sum = sum + $1}END{if(sum != 0)printf("%-10s %-10s\n",sum,file)}'
             popd > /dev/null
         fi
     done
-    echo $sum
 }
 
 function neovimUpgrade {
