@@ -57,7 +57,7 @@ ls.add_snippets(nil, {
             },
             {
                 text { 'func ' }, insert(1, "Name"), text { '() {', '' }, text { '}' }
-        }),
+            }),
         snip({
                 trig = "struct",
                 namr = "struct",
@@ -65,7 +65,7 @@ ls.add_snippets(nil, {
             },
             {
                 text { 'type ' }, insert(1, "Name"), text { ' struct {', '' }, text { '}' }
-        }),
+            }),
         snip({
                 trig = "interface",
                 namr = "interface",
@@ -73,7 +73,7 @@ ls.add_snippets(nil, {
             },
             {
                 text { 'type ' }, insert(1, "Name"), text { ' interface {', '' }, text { '}' }
-        }),
+            }),
         snip({
                 trig = "galoistest",
                 namr = "galoistest",
@@ -87,14 +87,15 @@ ls.add_snippets(nil, {
 
                     "github.com/golang/mock/gomock"
                     "github.com/onsi/gomega"
+                    "code.byted.org/gopkg/gomonkey"
                 )
 
                 func Test<>(t *testing.T) {
                     mockCtrl := gomock.NewController(t)
-                    mockRepo := repomock.NewMockCompletedInstanceRepository(mockCtrl)
 
                     testCases := []struct {
                         name       string
+                        mock   func() []*gomonkey.Patches
                     }{
                     }
                     for _, tt := range testCases {
@@ -119,5 +120,86 @@ ls.add_snippets(nil, {
                 }
             )
         ),
+        snip({
+                trig = "gomonkey",
+            },
+            fmt(
+                [[
+                    testCases := []struct {
+                        desc   string
+                        isErr  bool
+                        errMsg string
+                        mock   func() []*gomonkey.Patches
+                    }{
+                        {
+                            desc:   "request error",
+                            isErr:  true,
+                            mock: func() []*gomonkey.Patches {
+                                patches := []*gomonkey.Patches{}
+                                return append(patches, p)
+                            },
+                        },
+                    }
+
+                    for _, tc := range testCases {
+                        t.Run(tc.desc, func(t *testing.T) {
+                            g := gomega.NewWithT(t)
+                            var patches []*gomonkey.Patches
+                            if tc.mock != nil {
+                                patches = tc.mock()
+                            }
+                            defer func() {
+                                for _, p := range patches {
+                                    if p != nil {
+                                        p.Reset()
+                                    }
+                                }
+                            }()
+                        })
+                    }
+                ]],
+                {
+                },
+                {
+                    delimiters = "<>",
+                }
+            )
+        ),
+        snip({
+                trig = "mkFunc"
+            },
+            fmt(
+                [[
+				p := gomonkey.ApplyMethod(reflect.TypeOf(&<>{}), "<>",
+					func() () {
+					})
+
+            ]],
+                {
+                    insert(1, "type"),
+                    insert(0, "func"),
+                },
+                {
+                    delimiters = "<>",
+                }
+
+            )
+        ),
+        snip({
+                trig = "gomock"
+            },
+            fmt(
+                [[
+                mockRepo := <>.NewMockCompletedInstanceRepository(mockCtrl)
+            ]],
+                {
+                    insert(1, "repo"),
+                },
+                {
+                    delimiters = "<>",
+                }
+
+            )
+        )
     }
 })
