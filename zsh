@@ -14,6 +14,7 @@ alias tnew="tmux new -s"
 alias rl="source ~/.zshrc"
 alias vim="nvim"
 alias vi="nvim"
+alias cat="batcat"
 
 # rust configuration
 source "$HOME/.cargo/env"
