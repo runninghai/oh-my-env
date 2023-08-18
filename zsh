@@ -4,7 +4,7 @@ plugins=($plugins git zsh-autosuggestions kubectl)
 export LOGPATH="$HOME/Documents/code/git/log"
 
 # dracula config
-export DRACULA_DISPLAY_TIME=1
+export DRACULA_DISPLAY_TIME=1 
 export DRACULA_DISPLAY_CONTEXT=1
 export DRACULA_DISPLAY_NEW_LINE=1
 
