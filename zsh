@@ -8,6 +8,8 @@ export DRACULA_DISPLAY_TIME=1
 export DRACULA_DISPLAY_CONTEXT=1
 export DRACULA_DISPLAY_NEW_LINE=1
 
+export NVIM_PLUGIN=$HOME/.local/share/nvim/lazy
+
 export LUA_PATH="$CODEPATH/git/plenary.nvim/lua/?.lua;;"
 # alias
 alias tnew="tmux new -s"

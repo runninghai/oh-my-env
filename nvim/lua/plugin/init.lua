@@ -49,12 +49,6 @@ require('lazy').setup({
         version = 'v1.12.0'
     },
 
-    {
-        'renerocksai/telekasten.nvim',
-        dependencies = { 'nvim-telescope/telescope.nvim' }
-    },
-    'renerocksai/calendar-vim',
-
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-buffer',
     'hrsh7th/cmp-path',
