@@ -164,6 +164,10 @@ require('lazy').setup({
     },
     {
       'xiyaowong/transparent.nvim',
+    },
+    {
+        'dstein64/vim-startuptime',
+        version = 'v4.4.0'
     }
 }
 )
