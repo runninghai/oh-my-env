@@ -12,6 +12,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- the order of functions below can't be changed
-require('core')
 require('plugin')
+require('core')
 require('language')

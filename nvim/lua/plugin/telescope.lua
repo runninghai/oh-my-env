@@ -34,5 +34,6 @@ require('telescope').setup {
         -- builtin picker
     },
     extensions = {
+        'lazygit'
     }
 }

@@ -33,10 +33,16 @@ require('lazy').setup({
         dependencies = { 'nvim-lua/plenary.nvim' },
         version = 'v1.1.0'
     },
-    'tpope/vim-fugitive',
+    -- 'tpope/vim-fugitive',
     {
         'lewis6991/gitsigns.nvim',
         version = 'v0.6'
+    },
+    {
+        'kdheepak/lazygit.nvim',
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+        }
     },
 
     'neovim/nvim-lspconfig',
@@ -130,22 +136,46 @@ require('lazy').setup({
     'nvim-telescope/telescope-media-files.nvim',
 
     {
-      'folke/flash.nvim',
-      event = 'VeryLazy',
-      opts = {},
-      version = '1.17.3',
-      keys = {
-        { 's', mode = { 'n', 'x', 'o' }, function() require('flash').jump() end, desc = 'Flash' },
-        { 'S', mode = { 'n', 'o', 'x' }, function() require('flash').treesitter() end, desc = 'Flash Treesitter' },
-        { 'r', mode = 'o', function() require('flash').remote() end, desc = 'Remote Flash' },
-        { 'R', mode = { 'o', 'x' }, function() require('flash').treesitter_search() end, desc = 'Treesitter Search' },
-        { '<c-s>', mode = { 'c' }, function() require('flash').toggle() end, desc = 'Toggle Flash Search' },
-      },
+        'folke/flash.nvim',
+        event = 'VeryLazy',
+        opts = {},
+        version = '1.17.3',
+        keys = {
+            { 's', mode = { 'n', 'x', 'o' }, function() require('flash').jump() end, desc = 'Flash' },
+            {
+                'S',
+                mode = { 'n', 'o', 'x' },
+                function() require('flash').treesitter() end,
+                desc =
+                'Flash Treesitter'
+            },
+            {
+                'r',
+                mode = 'o',
+                function() require('flash').remote() end,
+                desc =
+                'Remote Flash'
+            },
+            {
+                'R',
+                mode = { 'o', 'x' },
+                function() require('flash').treesitter_search() end,
+                desc =
+                'Treesitter Search'
+            },
+            {
+                '<c-s>',
+                mode = { 'c' },
+                function() require('flash').toggle() end,
+                desc =
+                'Toggle Flash Search'
+            },
+        },
     },
-    { 
-      'lukas-reineke/indent-blankline.nvim',
-      version = 'v2.20.7',
-      event = 'VeryLazy',
+    {
+        'lukas-reineke/indent-blankline.nvim',
+        version = 'v2.20.7',
+        event = 'VeryLazy',
     },
 
     {
@@ -154,16 +184,16 @@ require('lazy').setup({
     },
     {
         'kevinhwang91/nvim-ufo',
-        dependencies = {'kevinhwang91/promise-async'},
+        dependencies = { 'kevinhwang91/promise-async' },
         version = 'v1.3.0'
     },
     {
-      'glepnir/dashboard-nvim',
-      event = 'VimEnter',
-      dependencies = { {'nvim-tree/nvim-web-devicons'}}
+        'glepnir/dashboard-nvim',
+        event = 'VimEnter',
+        dependencies = { { 'nvim-tree/nvim-web-devicons' } }
     },
     {
-      'xiyaowong/transparent.nvim',
+        'xiyaowong/transparent.nvim',
     },
     {
         'dstein64/vim-startuptime',

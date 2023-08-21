@@ -6,7 +6,7 @@ font:
 
 window:
   startup_mode: Fullscreen
-  opacity: 0.9
+  opacity: 0.6
 
 hints:
   enabled:
