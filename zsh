@@ -16,6 +16,7 @@ alias rl="source ~/.zshrc"
 alias vim="nvim"
 alias vi="nvim"
 alias cat="batcat"
+alias lg="lazygit"
 
 # rust configuration
 source "$HOME/.cargo/env"
@@ -126,3 +127,5 @@ function neovimUpgrade {
     sudo cp -rf lib/* /usr/local/lib/
     sudo cp -rf share/* /usr/local/share/
 }
+
+source $ZSH/oh-my-zsh.sh
