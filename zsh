@@ -109,6 +109,15 @@ function fetchImage {
     fi
 }
 
+function suggestFetchImage {
+  local files
+  files=($HOME/Downloads/*.(jpeg|png|jpg|gif)(N:t))
+  compadd -U -f -a files 
+}
+compdef suggestFetchImage fetchImage
+
+
+
 function codeStatistic {
     gtype=$1
     suffi=$2
