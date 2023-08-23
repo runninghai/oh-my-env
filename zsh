@@ -15,8 +15,14 @@ alias tnew="tmux new -s"
 alias rl="source ~/.zshrc"
 alias vim="nvim"
 alias vi="nvim"
-alias cat="batcat"
 alias lg="lazygit"
+
+system=$(uname -s)
+if [[ "$system" = "Linux" ]];then
+    alias cat="batcat"
+elif [[ "$system" = "Darwin" ]];then
+    alias cat="bat"
+fi
 
 # rust configuration
 source "$HOME/.cargo/env"
