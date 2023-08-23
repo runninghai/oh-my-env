@@ -7,6 +7,9 @@ keyset('n', '<Leader>w', ':w<CR>')
 keyset('n', '<Leader>q', ':q<CR>')
 keyset('n', '<Leader>qq', ':q!<CR>')
 
+keyset('n', '<Space>jp', 'o<Esc>p')
+keyset('n', '<Space>kp', 'O<Esc>p')
+
 keyset('n', '<Up>', '<nop>')
 keyset('n', '<Down>', '<nop>')
 keyset('n', '<Left>', '<nop>')
