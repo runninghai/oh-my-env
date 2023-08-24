@@ -143,4 +143,23 @@ function neovimUpgrade {
     sudo cp -rf share/* /usr/local/share/
 }
 
+
+function cleanDownloads {
+    DownloadsPath=$HOME/Downloads
+    lock=$DownloadsPath/.$(date +"%Y-%m-%d").lock
+    if [[ -f "$lock" ]]; then
+        return
+    fi
+
+    current_timestamp=$(date +%s)
+    yesterday_timestamp=$((current_timestamp - 24 * 60 * 60))
+    yesterday=$(date -r "$yesterday_timestamp" +"%Y-%m-%d")
+
+    find $DownloadsPath -newermt "$yesterday" ! -newermt "$yesterday + 1 day" -delete
+    touch $lock
+}
+
+cleanDownloads
+
+
 source $ZSH/oh-my-zsh.sh
