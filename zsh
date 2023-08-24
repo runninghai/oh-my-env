@@ -160,6 +160,7 @@ function cleanDownloads {
 }
 
 cleanDownloads
+addDailyLog
 
 
 source $ZSH/oh-my-zsh.sh
