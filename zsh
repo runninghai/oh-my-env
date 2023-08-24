@@ -1,12 +1,36 @@
 # plugins config
 plugins=($plugins git zsh-autosuggestions kubectl)
 
+source $ZSH/oh-my-zsh.sh
+
+#***********************split lint ***********************
+#code below can't be set above
+
 export LOGPATH="$HOME/Documents/code/git/log"
+
+system=$(uname -s)
+if [[ "$system" = "Linux" ]];then
+    installCmd="apt -y"
+elif [[ "$system" = "Darwin" ]];then
+    installCmd="brew"
+fi
+
+preInstall=("walk")
+
+for item in "${preInstall[@]}"
+do
+    if command -v $item > /dev/null 2>&1;then
+        echo "$item ready\n"
+    else
+        $installCmd install $item
+    fi
+done
 
 # dracula config
 export DRACULA_DISPLAY_TIME=1 
 export DRACULA_DISPLAY_CONTEXT=1
 export DRACULA_DISPLAY_NEW_LINE=1
+export EDITOR='nvim'
 
 export NVIM_PLUGIN=$HOME/.local/share/nvim/lazy
 
@@ -16,6 +40,7 @@ alias rl="source ~/.zshrc"
 alias vim="nvim"
 alias vi="nvim"
 alias lg="lazygit"
+alias walk="walk --icons"
 
 system=$(uname -s)
 if [[ "$system" = "Linux" ]];then
@@ -159,8 +184,11 @@ function cleanDownloads {
     touch $lock
 }
 
+function lk {
+  cd "$(walk "$@")"
+}
+
 cleanDownloads
 addDailyLog
 
 
-source $ZSH/oh-my-zsh.sh

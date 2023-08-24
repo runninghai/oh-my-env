@@ -3,6 +3,7 @@ local ls = require('luasnip')
 local snip = ls.snippet
 local text = ls.text_node
 local insert = ls.insert_node
+local fmt = require("luasnip.extras.fmt").fmt
 
 local shellsnips = {
     snip({
@@ -21,6 +22,23 @@ local shellsnips = {
         text { '{', '' },
         text { '}' }
     }),
+    snip({
+            trig = "rangefor",
+        },
+        fmt(
+            [[
+            for item in "${<>[@]}"
+            do
+            done
+                ]],
+            {
+                insert(1, "arr"),
+            },
+            {
+                delimiters = "<>",
+            }
+        )
+    ),
 }
 
 ls.add_snippets(nil, {

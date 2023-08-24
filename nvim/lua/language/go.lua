@@ -200,6 +200,22 @@ ls.add_snippets(nil, {
                 }
 
             )
+        ),
+        snip({
+                trig = "err"
+            },
+            fmt(
+                [[
+                if err != nil {
+
+                }
+            ]],
+                {
+                },
+                {
+                    delimiters = "<>",
+                }
+            )
         )
     }
 })
