@@ -20,3 +20,5 @@ g.mapleader = '\\'
 -- set termguicolors to enable highlight groups
 opt.termguicolors = true
 
+
+g.python3_host_prog="/usr/bin/python3"
