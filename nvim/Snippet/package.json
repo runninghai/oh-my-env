@@ -41,7 +41,7 @@
                 "path": "./snippets/shell/shelldoc.json"
             },
             {
-                "language": ["markdown", "rmd"],
+                "language": ["markdown"],
                 "path": "./snippets/markdown.json"
             },
             {
@@ -51,10 +51,6 @@
             {
                 "language": "yaml",
                 "path": "./snippets/kubernetes.json"
-            },
-            {
-                "language": "yaml",
-                "path": "./snippets/docker/docker-compose.json"
             },
             {
                 "language": "make",
