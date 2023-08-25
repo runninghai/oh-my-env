@@ -10,9 +10,9 @@ export LOGPATH="$HOME/Documents/code/git/log"
 
 system=$(uname -s)
 if [[ "$system" = "Linux" ]];then
-    installCmd="apt -y"
+    installCmd="sudo apt-get install -y"
 elif [[ "$system" = "Darwin" ]];then
-    installCmd="brew"
+    installCmd="brew install"
 fi
 
 preInstall=("walk")
@@ -22,7 +22,8 @@ do
     if command -v $item > /dev/null 2>&1;then
         echo "$item ready\n"
     else
-        $installCmd install $item
+        installCmd=$installCmd" "$item
+        $installCmd
     fi
 done
 
@@ -40,7 +41,7 @@ alias rl="source ~/.zshrc"
 alias vim="nvim"
 alias vi="nvim"
 alias lg="lazygit"
-alias walk="walk --icons"
+#alias walk="walk --icons"
 
 system=$(uname -s)
 if [[ "$system" = "Linux" ]];then
