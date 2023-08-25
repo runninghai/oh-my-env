@@ -9,3 +9,7 @@ for _, file in ipairs(languages) do
         cmd("source " .. file)
     end
 end
+
+-- load snippet
+local snippets = string.format("%s/Snippet", fn.stdpath("config"))
+require("luasnip.loaders.from_vscode").lazy_load({ paths = { snippets } })
