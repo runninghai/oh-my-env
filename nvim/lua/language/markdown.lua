@@ -102,5 +102,19 @@ ls.add_snippets(nil, {
                 }
             )
         ),
+        snip({
+                trig = "mermaid",
+            },
+            fmt(
+                [[
+                ```mermaid
+                {}
+                ```
+                ]],
+                {
+                    insert(0)
+                }
+            )
+        ),
     }
 })
