@@ -5,3 +5,4 @@ keyset('n', '<Leader>mds', ':MarkdownPreview<CR>')
 
 local g = vim.g
 g.mkdp_port='9090'
+g.mkdp_theme ='dark'
