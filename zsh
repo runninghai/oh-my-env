@@ -9,7 +9,17 @@ source $ZSH/oh-my-zsh.sh
 export LOGPATH="$HOME/Documents/code/git/log"
 
 system=$(uname -s)
+release=$(lsb_release -a 2>/dev/null |awk '{if(NR==1){print $3}}')
+version=$(lsb_release -a 2>/dev/null | grep Release|awk '{print $2}')
 if [[ "$system" = "Linux" ]];then
+    if [[ "$release" != "Ubuntu" ]];then
+        echo "not support yet"
+        return
+    fi
+    if [[ "$version" != "22.04" ]];then
+        echo "not support yet"
+        return
+    fi
     installpath=$CODEPATH/git/oh-my-env/ubuntu
 elif [[ "$system" = "Darwin" ]];then
     installpath=$CODEPATH/git/oh-my-env/macos
