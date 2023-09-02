@@ -1,7 +1,7 @@
 local g = vim.g
 local opt = vim.opt
 
-opt.clipboard="unnamed"
+opt.clipboard='unnamedplus'
 opt.colorcolumn='80'
 opt.number=true
 opt.relativenumber=true

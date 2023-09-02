@@ -10,20 +10,15 @@ export LOGPATH="$HOME/Documents/code/git/log"
 
 system=$(uname -s)
 if [[ "$system" = "Linux" ]];then
-    installCmd="sudo apt-get install -y"
+    installpath=$CODEPATH/git/oh-my-env/ubuntu
 elif [[ "$system" = "Darwin" ]];then
-    installCmd="brew install"
+    installpath=$CODEPATH/git/oh-my-env/macos
 fi
 
-preInstall=("walk")
-
-for item in "${preInstall[@]}"
+for file in $installpath/*
 do
-    if command -v $item > /dev/null 2>&1;then
-        echo "$item ready\n"
-    else
-        installCmd=$installCmd" "$item
-        $installCmd
+    if [ -f "$file" ]; then
+        source $file
     fi
 done
 
