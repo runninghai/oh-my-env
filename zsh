@@ -41,6 +41,7 @@ alias rl="source ~/.zshrc"
 alias vim="nvim"
 alias vi="nvim"
 alias lg="lazygit"
+alias mypc="ssh wherever230@192.168.1.6"
 #alias walk="walk --icons"
 
 system=$(uname -s)
@@ -181,7 +182,7 @@ function cleanDownloads {
     yesterday_timestamp=$((current_timestamp - 24 * 60 * 60))
     yesterday=$(date -r "$yesterday_timestamp" +"%Y-%m-%d")
 
-    find $DownloadsPath -newermt "$yesterday" ! -newermt "$yesterday + 1 day" -delete
+    find $DownloadsPath -type f -newermt "$yesterday" ! -newermt "$yesterday + 1 day" -delete
     touch $lock
 }
 

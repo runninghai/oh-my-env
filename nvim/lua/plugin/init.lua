@@ -26,7 +26,8 @@ require('lazy').setup({
         'nvim-tree/nvim-web-devicons',
         version = 'nerd-v2-compat'
     },
-    'Mofiqul/dracula.nvim',
+    --'Mofiqul/dracula.nvim',
+    { "ellisonleao/gruvbox.nvim", priority = 1000 },
     'wakatime/vim-wakatime',
     {
         'folke/todo-comments.nvim',
