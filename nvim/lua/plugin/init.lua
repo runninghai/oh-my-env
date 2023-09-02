@@ -61,6 +61,7 @@ require('lazy').setup({
     'hrsh7th/cmp-path',
     'hrsh7th/cmp-cmdline',
     'hrsh7th/nvim-cmp',
+    'uga-rosa/cmp-dictionary',
 
     {
         'L3MON4D3/LuaSnip',
@@ -99,15 +100,15 @@ require('lazy').setup({
     },
     'theHamsta/nvim-dap-virtual-text',
     {
-      "ray-x/go.nvim",
-      dependencies = {  -- optional packages
-        "ray-x/guihua.lua",
-        "neovim/nvim-lspconfig",
-        "nvim-treesitter/nvim-treesitter",
-      },
-      event = {"CmdlineEnter"},
-      ft = {"go", 'gomod'},
-      build = ':lua require("go.install").update_all_sync()' -- if you need to install/update all binaries
+        "ray-x/go.nvim",
+        dependencies = { -- optional packages
+            "ray-x/guihua.lua",
+            "neovim/nvim-lspconfig",
+            "nvim-treesitter/nvim-treesitter",
+        },
+        event = { "CmdlineEnter" },
+        ft = { "go", 'gomod' },
+        build = ':lua require("go.install").update_all_sync()' -- if you need to install/update all binaries
     },
 
     {
@@ -224,8 +225,7 @@ require('lazy').setup({
             "nvim-lua/plenary.nvim",
             "nvim-telescope/telescope.nvim"
         }
-    }
-
+    },
 }
 )
 
