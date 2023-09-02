@@ -84,7 +84,7 @@ require('go').setup({
   textobjects = true, -- enable default text jobects through treesittter-text-objects
   test_runner = 'go', -- one of {`go`, `richgo`, `dlv`, `ginkgo`, `gotestsum`}
   verbose_tests = true, -- set to add verbose flag to tests deprecated, see '-v' option
-  run_in_floaterm = false, -- set to true to run in float window. :GoTermClose closes the floatterm
+  run_in_floaterm = true, -- set to true to run in float window. :GoTermClose closes the floatterm
                            -- float term recommend if you use richgo/ginkgo with terminal color
 
   floaterm = {   -- position
@@ -92,7 +92,7 @@ require('go').setup({
     width = 0.45, -- width of float window if not auto
     height = 0.98, -- height of float window if not auto
   },
-  trouble = false, -- true: use trouble to open quickfix
+  trouble = true, -- true: use trouble to open quickfix
   test_efm = false, -- errorfomat for quickfix, default mix mode, set to true will be efm only
   luasnip = true, -- enable included luasnip snippets. you can also disable while add lua/snips folder to luasnip load
   --  Do not enable this if you already added the path, that will duplicate the entries

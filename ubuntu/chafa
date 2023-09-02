@@ -1,0 +1,11 @@
+#!/usr/bin/zsh
+
+item=chafa
+installCmd="sudo apt install"
+
+if command -v $item > /dev/null 2>&1;then
+    echo "$item ready\n"
+else
+    installCmd=$installCmd" "$item
+    eval "$installCmd"
+fi

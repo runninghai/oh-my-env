@@ -99,7 +99,15 @@ require('lazy').setup({
     },
     'theHamsta/nvim-dap-virtual-text',
     {
-        'ray-x/go.nvim',
+      "ray-x/go.nvim",
+      dependencies = {  -- optional packages
+        "ray-x/guihua.lua",
+        "neovim/nvim-lspconfig",
+        "nvim-treesitter/nvim-treesitter",
+      },
+      event = {"CmdlineEnter"},
+      ft = {"go", 'gomod'},
+      build = ':lua require("go.install").update_all_sync()' -- if you need to install/update all binaries
     },
 
     {
@@ -133,8 +141,8 @@ require('lazy').setup({
         dependencies = { { 'nvim-lua/plenary.nvim' } }
     },
 
-    'nvim-lua/popup.nvim',
-    'nvim-telescope/telescope-media-files.nvim',
+    --'nvim-lua/popup.nvim',
+    --'nvim-telescope/telescope-media-files.nvim',
 
     {
         'folke/flash.nvim',
@@ -193,9 +201,9 @@ require('lazy').setup({
         event = 'VimEnter',
         dependencies = { { 'nvim-tree/nvim-web-devicons' } }
     },
-    {
-        'xiyaowong/transparent.nvim',
-    },
+    --{
+    --    'xiyaowong/transparent.nvim',
+    --},
     {
         'dstein64/vim-startuptime',
         version = 'v4.4.0'

@@ -8,7 +8,6 @@ ln -s $CODEPATH/git/oh-my-env/alacritty.yml $HOME/.config/alacritty/alacritty.ym
 ```
 
 ## nvim
-
 ```
 ln -s $CODEPATH/git/oh-my-env/nvim $HOME/.config/nvim
 ```
