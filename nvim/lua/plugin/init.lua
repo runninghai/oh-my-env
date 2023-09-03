@@ -100,7 +100,7 @@ require('lazy').setup({
     },
     'theHamsta/nvim-dap-virtual-text',
     {
-        "ray-x/go.nvim",
+        "runninghai/go.nvim",
         dependencies = { -- optional packages
             "ray-x/guihua.lua",
             "neovim/nvim-lspconfig",
