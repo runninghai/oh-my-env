@@ -8,29 +8,7 @@ source $ZSH/oh-my-zsh.sh
 
 export LOGPATH="$HOME/Documents/code/git/log"
 
-system=$(uname -s)
-release=$(lsb_release -a 2>/dev/null |awk '{if(NR==1){print $3}}')
-version=$(lsb_release -a 2>/dev/null | grep Release|awk '{print $2}')
-if [[ "$system" = "Linux" ]];then
-    if [[ "$release" != "Ubuntu" ]];then
-        echo "not support yet"
-        return
-    fi
-    if [[ "$version" != "22.04" ]];then
-        echo "not support yet"
-        return
-    fi
-    installpath=$CODEPATH/git/oh-my-env/ubuntu
-elif [[ "$system" = "Darwin" ]];then
-    installpath=$CODEPATH/git/oh-my-env/macos
-fi
-
-for file in $installpath/*
-do
-    if [ -f "$file" ]; then
-        source $file
-    fi
-done
+source $CODEPATH/git/oh-my-env/deps/install.sh
 
 # dracula config
 export DRACULA_DISPLAY_TIME=1 
@@ -106,6 +84,9 @@ function addDailyLog {
     today=$(date +"%d")
     log=$LOGPATH/log/$year/$month/$today
     mkdir -p $log/images
+    if [[ -e $log/README.md ]] then
+        return
+    fi
 
     touch $log/README.md
 }

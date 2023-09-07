@@ -9,12 +9,12 @@ bind-key j select-pane -D
 bind-key h select-pane -L
 bind-key l select-pane -R
 
-# resize pane
-bind-key K resize-pane -U 6
-bind-key J resize-pane -D 6
-bind-key H resize-pane -L 6
-bind-key L resize-pane -R 6
-
 
 # bind-key s split-window \; resize-pane -D 12
 bind-key s split-window -v -l 20% -c "#{pane_current_path}"
+
+set -g @plugin 'egel/tmux-gruvbox'
+set -g @tmux-gruvbox 'dark' # or 'light'
+set -g @plugin 'tmux-plugins/tmux-resurrect'
+
+run-shell ~/.tmux/plugins/tpm/tpm
