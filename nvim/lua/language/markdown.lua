@@ -48,44 +48,6 @@ ls.add_snippets(nil, {
                 text(')'),
                 insert(0),
             }),
-        -- snip({
-        --         trig = "logs",
-        --         namr = "log",
-        --         dscr = "generate a log info with start time"
-        --     },
-        --     fmt(
-        --         [[
-        --           # {} - {}
-        --           ## task
-        --           {}
-        --           ## content
-        --         ]],
-        --         {
-        --             func(date, {}),
-        --             insert(1, "ended_at"),
-        --             insert(2, "task"),
-        --         }
-        --     )
-        -- ),
-        --snip({
-        --        trig = "loge",
-        --        namr = "log",
-        --        dscr = "generate a log info with end time"
-        --    },
-        --    fmt(
-        --        [[
-        --          # {} - {}
-        --          ## task
-        --          {}
-        --          ## content
-        --        ]],
-        --        {
-        --            insert(1, "started_at"),
-        --            func(date, {}),
-        --            insert(2, "task"),
-        --        }
-        --    )
-        --),
         snip({
                 trig = "log",
                 namr = "log",
@@ -116,5 +78,47 @@ ls.add_snippets(nil, {
                 }
             )
         ),
+        -- mermaid snips
+        snip({
+                trig = "relaIsa",
+            },
+            fmt(
+                [[
+                {} <|-- {}
+                ]],
+                {
+                    insert(1, "father"),
+                    insert(0, "son")
+                }
+            )
+        ),
+        snip({
+                trig = "relaReali",
+            },
+            fmt(
+                [[
+                {} <|.. {}
+                ]],
+                {
+                    insert(1, "father"),
+                    insert(0, "son")
+                }
+            )
+        ),
+        snip({
+                trig = "relaHasa",
+            },
+            fmt(
+                [[
+                {} <|.. {}
+                ]],
+                {
+                    insert(1, "father"),
+                    insert(0, "son")
+                }
+            )
+        ),
+
     }
 })
+

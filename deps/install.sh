@@ -1,5 +1,3 @@
-#!/usr/bin/zsh
-
 system=$(uname -s)
 release=$(lsb_release -a 2>/dev/null |awk '{if(NR==1){print $3}}')
 version=$(lsb_release -a 2>/dev/null | grep Release|awk '{print $2}')
@@ -31,3 +29,5 @@ do
         source $file
     fi
 done
+
+# vim: set filetype=bash

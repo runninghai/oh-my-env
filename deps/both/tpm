@@ -1,5 +1,3 @@
-#!/usr/bin/zsh
-
 if [[ -e $HOME/.tmux/plugins/tpm ]];then
     echo "tpm ready"
     return
@@ -7,3 +5,5 @@ fi
 
 git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
 
+
+# vim: set filetype=bash
