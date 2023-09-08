@@ -179,4 +179,4 @@ function lk {
 cleanDownloads
 addDailyLog
 
-
+# vim: set filetype=bash :
