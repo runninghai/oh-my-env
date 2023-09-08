@@ -1,5 +1,14 @@
+source $CODEPATH/git/oh-my-env/deps/install
+
 # plugins config
-plugins=($plugins git zsh-autosuggestions kubectl)
+plugins=($plugins git zsh-autosuggestions kubectl vi-mode kubectx golang)
+
+#ZSH_THEME="random"
+ZSH_THEME="lambda"
+ZSH_THEME_RANDOM_CANDIDATES=(
+  "ys"
+  "dracula"
+)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -8,7 +17,6 @@ source $ZSH/oh-my-zsh.sh
 
 export LOGPATH="$HOME/Documents/code/git/log"
 
-source $CODEPATH/git/oh-my-env/deps/install
 
 # dracula config
 export DRACULA_DISPLAY_TIME=1 
