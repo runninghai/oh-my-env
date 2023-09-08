@@ -8,7 +8,7 @@ source $ZSH/oh-my-zsh.sh
 
 export LOGPATH="$HOME/Documents/code/git/log"
 
-source $CODEPATH/git/oh-my-env/deps/install.sh
+source $CODEPATH/git/oh-my-env/deps/install
 
 # dracula config
 export DRACULA_DISPLAY_TIME=1 
