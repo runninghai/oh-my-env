@@ -1,4 +1,3 @@
-
 export LOGPATH="$HOME/Documents/code/git/log"
 export EDITOR='nvim'
 export NVIM_PLUGIN=$HOME/.local/share/nvim/lazy
