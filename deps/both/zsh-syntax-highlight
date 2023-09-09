@@ -1,0 +1,9 @@
+if [[ -e $CODEPATH/git/zsh-syntax-highlighting ]];then
+    echo "zsh-syntax-highlighting ready"
+    return
+fi
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $CODEPATH/git/zsh-syntax-highlighting
+
+ln -sf $CODEPATH/git/zsh-syntax-highlighting $HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+
+# vim: set ft=bash :

@@ -2,7 +2,7 @@ item=chafa
 installCmd="sudo apt install"
 
 if command -v $item > /dev/null 2>&1;then
-    echo "$item ready\n"
+    echo "$item ready"
 else
     installCmd=$installCmd" "$item
     eval "$installCmd"

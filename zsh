@@ -1,14 +1,9 @@
 source $CODEPATH/git/oh-my-env/deps/install
 
 # plugins config
-plugins=($plugins git zsh-autosuggestions kubectl vi-mode kubectx golang)
+plugins=($plugins git zsh-autosuggestions kubectl vi-mode kubectx golang ag history zsh-syntax-highlighting)
 
-#ZSH_THEME="random"
-ZSH_THEME="lambda"
-ZSH_THEME_RANDOM_CANDIDATES=(
-  "ys"
-  "dracula"
-)
+ZSH_THEME="spaceship"
 
 source $ZSH/oh-my-zsh.sh
 
@@ -19,10 +14,10 @@ export LOGPATH="$HOME/Documents/code/git/log"
 
 
 # dracula config
-export DRACULA_DISPLAY_TIME=1 
-export DRACULA_DISPLAY_CONTEXT=1
-export DRACULA_DISPLAY_NEW_LINE=1
-export EDITOR='nvim'
+# export DRACULA_DISPLAY_TIME=1 
+# export DRACULA_DISPLAY_CONTEXT=1
+# export DRACULA_DISPLAY_NEW_LINE=1
+# export EDITOR='nvim'
 
 export NVIM_PLUGIN=$HOME/.local/share/nvim/lazy
 

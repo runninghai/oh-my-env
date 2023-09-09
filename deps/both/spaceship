@@ -1,0 +1,10 @@
+if [[ -e $CODEPATH/git/spaceship-prompt ]];then
+    echo "spaceship-prompt ready"
+    return
+fi
+
+git clone https://github.com/spaceship-prompt/spaceship-prompt.git "$CODEPATH/git/spaceship-prompt" --depth=1
+
+ln -sf $CODEPATH/git/spaceship-prompt/spaceship.zsh-theme $HOME/.oh-my-zsh/themes/spaceship.zsh-theme
+
+# vim: set ft=bash :
