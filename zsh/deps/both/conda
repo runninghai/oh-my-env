@@ -1,0 +1,3 @@
+$HOME/miniconda3/bin/conda init zsh 1> /dev/null
+
+# vim: set ft=bash :
