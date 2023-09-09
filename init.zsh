@@ -1,6 +1,6 @@
 source $CODEPATH/git/oh-my-env/zsh/install
 
-plugins=(git zsh-autosuggestions kubectl vi-mode kubectx golang ag history zsh-syntax-highlighting)
+plugins=($plugins git zsh-autosuggestions kubectl vi-mode kubectx golang ag history zsh-syntax-highlighting)
 
 ZSH_THEME="spaceship"
 zstyle ':omz:update' mode auto      # update automatically without asking
