@@ -1,4 +1,4 @@
-if [[ "$system" != "Linux" ]];then
+if [[ "$ENV" != "COMPANY" ]];then
     return
 fi
 
