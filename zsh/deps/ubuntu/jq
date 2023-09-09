@@ -1,0 +1,8 @@
+item=jq
+installCmd="sudo apt install -y"
+
+if ! command -v $item > /dev/null 2>&1;then
+    installCmd=$installCmd" "$item
+    eval "$installCmd"
+fi
+# vim: set ft=bash :

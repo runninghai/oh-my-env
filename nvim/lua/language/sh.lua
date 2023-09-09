@@ -39,6 +39,25 @@ local shellsnips = {
             }
         )
     ),
+    snip({
+            trig = "cmdexit",
+        },
+        fmt(
+            [[
+                item={}
+                installCmd="{}"
+
+                if ! command -v $item > /dev/null 2>&1;then
+                    installCmd=$installCmd" "$item
+                    eval "$installCmd"
+                fi
+            ]],
+            {
+                insert(1, "cmd"),
+                insert(0, "installCmd"),
+            }
+        )
+    ),
 }
 
 ls.add_snippets(nil, {

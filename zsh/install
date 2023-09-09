@@ -12,8 +12,10 @@ if [[ "$system" = "Linux" ]];then
         return
     fi
     installpath=$installBasePath/ubuntu
+    installCmd="sudo apt install -y"
 elif [[ "$system" = "Darwin" ]];then
     installpath=$installBasePath/macos
+    installCmd="brew install -y"
 fi
 
 for file in $installBasePath/both/*

@@ -16,6 +16,5 @@ function codeStatistic {
     done
 }
 
-
 # vim: set ft=bash :
 
