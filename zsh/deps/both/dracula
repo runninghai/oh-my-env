@@ -1,0 +1,12 @@
+if [[ ! -e $CODEPATH/git/dracula-zsh ]];then
+    git clone https://github.com/dracula/zsh.git $CODEPATH/git/dracula-zsh
+
+    ln -sf $CODEPATH/git/dracula-zsh/dracula.zsh-theme $HOME/.oh-my-zsh/themes/dracula.zsh-theme
+fi
+
+export DRACULA_DISPLAY_TIME=1 
+export DRACULA_DISPLAY_CONTEXT=1
+export DRACULA_DISPLAY_NEW_LINE=1
+
+
+# vim: set ft=bash :

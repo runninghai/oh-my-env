@@ -1,0 +1,4 @@
+# rust configuration
+source "$HOME/.cargo/env"
+# vim: set ft=bash :
+

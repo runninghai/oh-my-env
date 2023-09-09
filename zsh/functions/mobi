@@ -1,0 +1,19 @@
+function generateMobi {
+    if [ -d "html_out" ]; then
+        rm -rf html_out
+    fi
+    PROJECT=$(basename "$PWD")
+    cpucnt=$(sysctl hw.logicalcpu|awk '{print $2}')
+    src2html.pl --tab-width 4 --color --cross-reference --navigator --line-numbers \
+        -j $((${cpucnt}*2)) . '$PROJECT'
+    ebook-convert html_out/index.html $PROJECT.mobi\
+        --output-profile kindle_dx --no-inline-toc \
+        --title "$PROJECT" --publisher 'wherever230' \
+        --language en --authors 'wherever230'
+    mv $PROJECT.mobi ~/Documents/doc/mobi
+    rm -rf html_out
+    rm src2html.tags
+}
+
+# vim: set ft=bash :
+

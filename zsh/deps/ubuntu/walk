@@ -1,11 +1,13 @@
 item=walk
 installCmd="sudo apt install"
 
-if command -v $item > /dev/null 2>&1;then
-    echo "$item ready"
-else
+if ! command -v $item > /dev/null 2>&1;then
     installCmd=$installCmd" "$item
     eval "$installCmd"
 fi
+
+function lk {
+  cd "$(walk "$@")"
+}
 
 # vim: set filetype=bash :

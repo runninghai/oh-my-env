@@ -1,7 +1,7 @@
 system=$(uname -s)
 release=$(lsb_release -a 2>/dev/null |awk '{if(NR==1){print $3}}')
 version=$(lsb_release -a 2>/dev/null | grep Release|awk '{print $2}')
-installBasePath=$CODEPATH/git/oh-my-env/deps
+installBasePath=$CODEPATH/git/oh-my-env/zsh/deps
 if [[ "$system" = "Linux" ]];then
     if [[ "$release" != "Ubuntu" ]];then
         echo "not support yet"

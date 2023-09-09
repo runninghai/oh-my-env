@@ -1,0 +1,16 @@
+function plantuml {
+    cat $1 | java -DPLANTUML_LIMIT_SIZE=16384 -jar \
+        ${PLANTUML_PATH}/plantuml.jar -pipe \
+        | open -a Preview.app -f
+}
+
+function genePlantuml {
+    project=$(basename $(pwd))
+    goplantuml . > $project
+    java -DPLANTUML_LIMIT_SIZE=16384 -jar \
+        ${PLANTUML_PATH}/plantuml.jar $project
+    rm $project
+}
+
+# vim: set ft=bash :
+

@@ -1,0 +1,6 @@
+
+bindkey -v
+bindkey "^R"      history-incremental-search-backward 
+
+# vim: set ft=bash :
+

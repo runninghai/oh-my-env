@@ -1,0 +1,10 @@
+functionBasePath=$CODEPATH/git/oh-my-env/zsh/functions
+for file in $functionBasePath/*
+do
+    if [ -f "$file" ]; then
+        source $file
+    fi
+done
+
+# vim: set ft=bash :
+
