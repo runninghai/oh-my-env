@@ -4,5 +4,4 @@ if [[ ! -e $CODEPATH/git/spaceship-prompt ]];then
     ln -sf $CODEPATH/git/spaceship-prompt/spaceship.zsh-theme $HOME/.oh-my-zsh/themes/spaceship.zsh-theme
 fi
 
-
 # vim: set ft=bash :

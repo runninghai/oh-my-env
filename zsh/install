@@ -1,19 +1,26 @@
+function defaultExist {
+    command -v $1 > /dev/null 2>&1
+}
+
 system=$(uname -s)
-release=$(lsb_release -a 2>/dev/null |awk '{if(NR==1){print $3}}')
-version=$(lsb_release -a 2>/dev/null | grep Release|awk '{print $2}')
+
 installBasePath=$CODEPATH/git/oh-my-env/zsh/deps
 if [[ "$system" = "Linux" ]];then
+    release=$(lsb_release -a 2>/dev/null |awk '{if(NR==1){print $3}}')
+    version=$(lsb_release -a 2>/dev/null | grep Release|awk '{print $2}')
     if [[ "$release" != "Ubuntu" ]];then
-        echo "not support yet"
+        echo "only support ubuntu 22.04"
         return
     fi
     if [[ "$version" != "22.04" ]];then
-        echo "not support yet"
+        echo "only support ubuntu 22.04"
         return
     fi
     installpath=$installBasePath/ubuntu
     installCmd="sudo apt install -y"
-elif [[ "$system" = "Darwin" ]];then
+fi
+
+if [[ "$system" = "Darwin" ]];then
     installpath=$installBasePath/macos
     installCmd="brew install -y"
 fi
@@ -31,5 +38,7 @@ do
         source $file
     fi
 done
+
+
 
 # vim: set filetype=bash :

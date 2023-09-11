@@ -55,6 +55,7 @@ require('lazy').setup({
         'williamboman/mason-lspconfig.nvim',
         version = 'v1.12.0'
     },
+    'WhoIsSethDaniel/mason-tool-installer.nvim',
 
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-buffer',
@@ -96,7 +97,7 @@ require('lazy').setup({
     },
     {
         'rcarriga/nvim-dap-ui',
-        version = 'v3.8.4'
+        version = 'v3.9.1'
     },
     'theHamsta/nvim-dap-virtual-text',
     {
