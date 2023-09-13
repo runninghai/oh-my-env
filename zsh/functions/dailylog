@@ -1,0 +1,50 @@
+function addDailyLog {
+    year=$(date +"%Y")
+    month=$(date +"%m")
+    today=$(date +"%d")
+    log=$LOGPATH/log/$year/$month/$today
+    mkdir -p $log/images
+
+    touch $log/README.md
+}
+addDailyLog
+
+function dailyLog {
+    year=$(date +"%Y")
+    month=$(date +"%m")
+    today=$(date +"%d")
+    log=log/$year/$month/$today
+    echo $log
+}
+
+# log funcs
+function fetchImage {
+    year=$(date +"%Y")
+    month=$(date +"%m")
+    date=$(date +"%d")
+    imagePath=$LOGPATH/log/$year/$month/$date/images
+
+    if [ ! -d $imagePath ]
+    then
+        mkdir -p $imagePath 
+    fi
+
+    if [[ $1 == http* ]]; then
+        curl $1 -Lo $imagePath/$2
+    else
+        if [[ -e $1 ]]; then
+            cp $1 $imagePath/
+        else
+            cp $HOME/Downloads/$1 $imagePath/
+        fi
+    fi
+}
+
+function suggestFetchImage {
+  local files
+  files=($HOME/Downloads/*.(jpeg|png|jpg|gif)(N:t))
+  compadd -U -f -a files 
+}
+compdef suggestFetchImage fetchImage
+
+# vim: set ft=bash :
