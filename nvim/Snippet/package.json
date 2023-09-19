@@ -79,6 +79,14 @@
             {
                 "language": "make",
                 "path": "./snippets/make.json"
+            },
+            {
+                "language": "rust",
+                "path": "./snippets/rust/rust.json"
+            },
+            {
+                "language": "rustdoc",
+                "path": "./snippets/rust/rustdoc.json"
             }
         ]
     }

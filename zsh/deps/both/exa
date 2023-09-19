@@ -1,0 +1,10 @@
+item=exa
+
+if ! command -v $item > /dev/null 2>&1;then
+    installCmd=$installCmd" "$item
+    eval "$installCmd"
+fi
+
+alias l="exa --icons"
+alias ls="exa --icons"
+# vim: set ft=bash :

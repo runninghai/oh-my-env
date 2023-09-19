@@ -11,6 +11,7 @@ require('mason-tool-installer').setup {
     'lua-language-server',
     'gopls',
     'delve',
+    'rust-analyzer',
 
     'black',
     'pyright'
