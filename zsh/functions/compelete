@@ -1,4 +1,4 @@
-function tool-archive-completion{
+function tool-archive-completion {
     local level=$1
 }
 # vim: set ft=bash :
