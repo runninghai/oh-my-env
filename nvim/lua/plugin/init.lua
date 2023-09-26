@@ -2,7 +2,7 @@ local fn = vim.fn
 local cmd = vim.cmd
 
 
-require('lazy').setup({
+local spec = {
     'nvim-lua/plenary.nvim',
     {
         'windwp/nvim-autopairs',
@@ -227,7 +227,20 @@ require('lazy').setup({
             "nvim-telescope/telescope.nvim"
         }
     },
+    {
+        "runninghai/manim.nvim",
+        dev = true
+    }
 }
+
+local codePath = os.getenv("CODEPATH")
+require('lazy').setup(
+    {
+        spec = spec,
+        dev = {
+            path = codePath .. "/git"
+        }
+    }
 )
 
 local scan = require 'plenary.scandir'
