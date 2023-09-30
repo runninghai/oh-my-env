@@ -142,9 +142,7 @@ local spec = {
         version = '0.1.2',
         dependencies = { { 'nvim-lua/plenary.nvim' } }
     },
-
-    --'nvim-lua/popup.nvim',
-    --'nvim-telescope/telescope-media-files.nvim',
+    { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
 
     {
         'folke/flash.nvim',
