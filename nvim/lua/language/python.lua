@@ -32,7 +32,6 @@ require('lspconfig')['pyright'].setup {
     capabilities = require('cmp_nvim_lsp').default_capabilities(),
 
     flags = lsp_flags,
-    
     single_file_support = true,
     settings = {
         pyright = {
@@ -44,7 +43,7 @@ require('lspconfig')['pyright'].setup {
                 autoImportCompletions = true,
                 autoSearchPaths = true,
                 diagnosticMode = "workspace", -- openFilesOnly, workspace
-                typeCheckingMode = "off", -- off, basic, strict
+                typeCheckingMode = "off",     -- off, basic, strict
                 useLibraryCodeForTypes = true
             }
         }

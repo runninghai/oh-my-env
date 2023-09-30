@@ -99,5 +99,6 @@ dict.setup({
 dict.switcher({
     filetype = {
         markdown = vim.fn.stdpath("config") .. "/dictionary",
+        json = vim.fn.stdpath("config") .. "/dictionary",
     },
 })

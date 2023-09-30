@@ -21,4 +21,4 @@ g.mapleader = '\\'
 opt.termguicolors = true
 
 
-g.python3_host_prog="/Users/bytedance/miniconda3/envs/manim/bin/python"
+g.python3_host_prog="/home/wherever230/miniconda3/envs/manim/bin/python"
