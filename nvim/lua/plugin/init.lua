@@ -27,7 +27,7 @@ local spec = {
         version = 'nerd-v2-compat'
     },
     --'Mofiqul/dracula.nvim',
-    { "ellisonleao/gruvbox.nvim", priority = 1000 },
+    { "ellisonleao/gruvbox.nvim",                 priority = 1000 },
     'wakatime/vim-wakatime',
     {
         'folke/todo-comments.nvim',
@@ -100,6 +100,7 @@ local spec = {
         version = 'v3.9.1'
     },
     'theHamsta/nvim-dap-virtual-text',
+
     {
         "runninghai/go.nvim",
         dependencies = { -- optional packages
@@ -144,10 +145,13 @@ local spec = {
     },
     { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
 
+
     {
         'folke/flash.nvim',
         event = 'VeryLazy',
-        opts = {},
+        opts = {
+            char = {enabled = false}
+        },
         version = '1.17.3',
         keys = {
             { 's', mode = { 'n', 'x', 'o' }, function() require('flash').jump() end, desc = 'Flash' },
@@ -157,15 +161,7 @@ local spec = {
                 function() require('flash').treesitter() end,
                 desc =
                 'Flash Treesitter'
-            },
-            {
-                'r',
-                mode = 'o',
-                function() require('flash').remote() end,
-                desc =
-                'Remote Flash'
-            },
-            {
+            }, {
                 'R',
                 mode = { 'o', 'x' },
                 function() require('flash').treesitter_search() end,
@@ -201,9 +197,6 @@ local spec = {
         event = 'VimEnter',
         dependencies = { { 'nvim-tree/nvim-web-devicons' } }
     },
-    --{
-    --    'xiyaowong/transparent.nvim',
-    --},
     {
         'dstein64/vim-startuptime',
         version = 'v4.4.0'
