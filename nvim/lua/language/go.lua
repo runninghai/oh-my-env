@@ -21,7 +21,10 @@ local on_attach = function(client, bufnr)
     vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
     vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
     vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-    vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
+    vim.keymap.set('n', '<space>f', function()
+        require("go.format").gofmt()
+        require("go.format").goimport()
+    end, bufopts)
 end
 
 local lsp_flags = {
@@ -33,11 +36,12 @@ local lsp_flags = {
 
 local format_sync_grp = vim.api.nvim_create_augroup("GoImport", {})
 vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = "*.go",
-  callback = function()
-   require('go.format').goimport()
-  end,
-  group = format_sync_grp,
+    pattern = "*.go",
+    callback = function()
+        require("go.format").gofmt()
+        require('go.format').goimport()
+    end,
+    group = format_sync_grp,
 })
 
 require('lspconfig')['gopls'].setup {
