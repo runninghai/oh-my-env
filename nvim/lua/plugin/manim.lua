@@ -1,3 +1,3 @@
 require('manim').setup()
 local keyset = vim.keymap.set
-keyset('n', '<Leader>mp', ':ManimPreview<CR>')
+keyset('n', '<space>mp', ':ManimPreview<CR>')

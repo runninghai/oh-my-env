@@ -27,7 +27,7 @@ local spec = {
         version = 'nerd-v2-compat'
     },
     --'Mofiqul/dracula.nvim',
-    { "ellisonleao/gruvbox.nvim",                 priority = 1000 },
+    { 'ellisonleao/gruvbox.nvim',                 priority = 1000 },
     'wakatime/vim-wakatime',
     {
         'folke/todo-comments.nvim',
@@ -42,7 +42,7 @@ local spec = {
     {
         'kdheepak/lazygit.nvim',
         dependencies = {
-            "nvim-lua/plenary.nvim",
+            'nvim-lua/plenary.nvim',
         }
     },
 
@@ -56,6 +56,17 @@ local spec = {
         version = 'v1.12.0'
     },
     'WhoIsSethDaniel/mason-tool-installer.nvim',
+
+    'nvimtools/none-ls.nvim',
+    {
+        'jay-babu/mason-null-ls.nvim',
+        event = { 'BufReadPre', 'BufNewFile' },
+        dependencies = {
+            'williamboman/mason.nvim',
+            'nvimtools/none-ls.nvim',
+        },
+    },
+
 
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-buffer',
@@ -102,15 +113,14 @@ local spec = {
     'theHamsta/nvim-dap-virtual-text',
 
     {
-        "runninghai/go.nvim",
+        'runninghai/go.nvim',
         dependencies = { -- optional packages
-            "ray-x/guihua.lua",
-            "neovim/nvim-lspconfig",
-            "nvim-treesitter/nvim-treesitter",
+            'ray-x/guihua.lua',
+            'neovim/nvim-lspconfig',
+            'nvim-treesitter/nvim-treesitter',
         },
-        event = { "CmdlineEnter" },
-        ft = { "go", 'gomod' },
-        build = ':lua require("go.install").update_all_sync()' -- if you need to install/update all binaries
+        event = { 'CmdlineEnter' },
+        ft = { 'go', 'gomod' },
     },
 
     {
@@ -150,7 +160,7 @@ local spec = {
         'folke/flash.nvim',
         event = 'VeryLazy',
         opts = {
-            char = {enabled = false}
+            char = { enabled = false }
         },
         version = '1.17.3',
         keys = {
@@ -162,12 +172,12 @@ local spec = {
                 desc =
                 'Flash Treesitter'
             }, {
-                'R',
-                mode = { 'o', 'x' },
-                function() require('flash').treesitter_search() end,
-                desc =
-                'Treesitter Search'
-            },
+            'R',
+            mode = { 'o', 'x' },
+            function() require('flash').treesitter_search() end,
+            desc =
+            'Treesitter Search'
+        },
             {
                 '<c-s>',
                 mode = { 'c' },
@@ -207,29 +217,29 @@ local spec = {
         version = 'v0.2.0'
     },
     {
-        "jackMort/ChatGPT.nvim",
-        event = "VeryLazy",
+        'jackMort/ChatGPT.nvim',
+        event = 'VeryLazy',
         config = function()
-            require("chatgpt").setup()
+            require('chatgpt').setup()
         end,
         dependencies = {
-            "MunifTanjim/nui.nvim",
-            "nvim-lua/plenary.nvim",
-            "nvim-telescope/telescope.nvim"
+            'MunifTanjim/nui.nvim',
+            'nvim-lua/plenary.nvim',
+            'nvim-telescope/telescope.nvim'
         }
     },
     {
-        "runninghai/manim.nvim",
+        'runninghai/manim.nvim',
         dev = true
     }
 }
 
-local codePath = os.getenv("CODEPATH")
+local codePath = os.getenv('CODEPATH')
 require('lazy').setup(
     {
         spec = spec,
         dev = {
-            path = codePath .. "/git"
+            path = codePath .. '/git'
         }
     }
 )

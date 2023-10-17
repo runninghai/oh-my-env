@@ -10,7 +10,6 @@ vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 require("mason").setup()
 require("mason-lspconfig").setup {}
 require('mason-tool-installer').setup {
-
     -- a list of all tools you want to ensure are installed upon
     -- start; they should be the names Mason uses for each tool
     ensure_installed = {
@@ -53,3 +52,20 @@ require('mason-tool-installer').setup {
     -- Default: nil
     debounce_hours = 5, -- at least 5 hours between attempts to install/update
 }
+
+require("mason-null-ls").setup({
+    ensure_installed = { "stylua", "jq", "black" }
+})
+
+local null_ls = require("null-ls")
+
+null_ls.setup({
+    sources = {
+        null_ls.builtins.formatting.black,
+        null_ls.builtins.formatting.stylua,
+        null_ls.builtins.diagnostics.eslint,
+        null_ls.builtins.completion.spell,
+        null_ls.builtins.formatting.jq,
+    },
+})
+
