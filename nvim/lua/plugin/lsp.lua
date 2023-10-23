@@ -1,29 +1,29 @@
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 local opts = { noremap = true, silent = true }
-vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
+vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, opts)
+vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
+vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
+vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, opts)
 
 -- vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format({async = true})]]
 require("mason").setup()
-require("mason-lspconfig").setup {}
-require('mason-tool-installer').setup {
+require("mason-lspconfig").setup({})
+require("mason-tool-installer").setup({
     -- a list of all tools you want to ensure are installed upon
     -- start; they should be the names Mason uses for each tool
     ensure_installed = {
         -- you can pin a tool to a particular version
-        { 'golangci-lint', version = 'v1.47.0' },
+        { "golangci-lint", version = "v1.47.0" },
 
-        'lua-language-server',
-        'clangd',
-        'gopls',
-        'delve',
-        'rust-analyzer',
+        "lua-language-server",
+        "clangd",
+        "gopls",
+        "delve",
+        "rust-analyzer",
 
-        'black',
-        'pyright'
+        "black",
+        "pyright",
     },
 
     -- if set to true this will check each tool for updates. If updates
@@ -51,10 +51,10 @@ require('mason-tool-installer').setup {
     -- effect when running manually via ':MasonToolsInstall' etc....
     -- Default: nil
     debounce_hours = 5, -- at least 5 hours between attempts to install/update
-}
+})
 
 require("mason-null-ls").setup({
-    ensure_installed = { "stylua", "jq", "black" }
+    ensure_installed = { "stylua", "jq", "black" },
 })
 
 local null_ls = require("null-ls")
@@ -68,4 +68,3 @@ null_ls.setup({
         null_ls.builtins.formatting.jq,
     },
 })
-

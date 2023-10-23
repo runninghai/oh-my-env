@@ -1,9 +1,29 @@
-require 'nvim-treesitter.configs'.setup {
+require("nvim-treesitter.configs").setup({
     ensure_installed = {
-        "c", "cpp", "rust", "go", "gomod", "gosum", "lua", "python",'rust',
-        "vim", "make",
-        "json", "yaml", "jq", "latex", "markdown", "query", "toml", "dockerfile",
-        "git_config", "git_rebase", "gitattributes", "gitcommit", "gitignore"
+        "c",
+        "cpp",
+        "rust",
+        "go",
+        "gomod",
+        "gosum",
+        "lua",
+        "python",
+        "rust",
+        "vim",
+        "make",
+        "json",
+        "yaml",
+        "jq",
+        "latex",
+        "markdown",
+        "query",
+        "toml",
+        "dockerfile",
+        "git_config",
+        "git_rebase",
+        "gitattributes",
+        "gitcommit",
+        "gitignore",
     },
     highlight = {
         enable = true,
@@ -13,4 +33,4 @@ require 'nvim-treesitter.configs'.setup {
         -- Instead of true it can also be a list of languages
         additional_vim_regex_highlighting = false,
     },
-}
+})

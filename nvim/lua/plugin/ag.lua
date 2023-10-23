@@ -1,1 +1,1 @@
-vim.keymap.set('n', '<Leader>ag', ':Ag <cword><CR>')
+vim.keymap.set("n", "<Leader>ag", ":Ag <cword><CR>")

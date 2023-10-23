@@ -1,7 +1,7 @@
-local ls = require('luasnip')
+local ls = require("luasnip")
 ls.setup()
 ls.config.set_config({
-    store_selection_keys = '<c-s>',
+    store_selection_keys = "<c-s>",
 })
 
 local keymap = vim.api.nvim_set_keymap

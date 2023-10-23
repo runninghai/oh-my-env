@@ -1,7 +1,5 @@
-require('todo-comments').setup(
-    {
-        keywords = {
-            PERSONAL = { icon = "廒", color = "error" },
-        }
-    }
-)
+require("todo-comments").setup({
+    keywords = {
+        PERSONAL = { icon = "廒", color = "error" },
+    },
+})

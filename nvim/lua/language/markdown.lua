@@ -1,4 +1,4 @@
-local ls = require('luasnip')
+local ls = require("luasnip")
 
 local snip = ls.snippet
 local func = ls.function_node
@@ -6,52 +6,52 @@ local text = ls.text_node
 local fmt = require("luasnip.extras.fmt").fmt
 local insert = ls.insert_node
 
-local date = function() return { os.date('%Y-%m-%d %H:%M:%S') } end
+local date = function()
+    return { os.date("%Y-%m-%d %H:%M:%S") }
+end
 
 ls.add_snippets(nil, {
     markdown = {
         snip({
-                trig = "date",
-                namr = "Date",
-                dscr = "Date in the form of YYYY-MM-DD",
-            },
-            {
-                func(date, {}),
-            }),
+            trig = "date",
+            namr = "Date",
+            dscr = "Date in the form of YYYY-MM-DD",
+        }, {
+            func(date, {}),
+        }),
         snip({
-                trig = "link",
-                namr = "markdown_link",
-                dscr = "Create markdown link [txt](url)"
-            },
-            {
-                text('['),
-                insert(1),
-                text(']('),
-                func(function(_, snip)
-                    return snip.env.TM_SELECTED_TEXT[1] or {}
-                end, {}),
-                text(')'),
-                insert(0),
-            }),
+            trig = "link",
+            namr = "markdown_link",
+            dscr = "Create markdown link [txt](url)",
+        }, {
+            text("["),
+            insert(1),
+            text("]("),
+            func(function(_, snip)
+                return snip.env.TM_SELECTED_TEXT[1] or {}
+            end, {}),
+            text(")"),
+            insert(0),
+        }),
         snip({
-                trig = "image",
-                namr = "markdown_image",
-                dscr = "Create markdown image ![txt](url)"
-            },
+            trig = "image",
+            namr = "markdown_image",
+            dscr = "Create markdown image ![txt](url)",
+        }, {
+            text("!["),
+            insert(1),
+            text("]("),
+            func(function(_, snip)
+                return snip.env.TM_SELECTED_TEXT[1] or {}
+            end, {}),
+            text(")"),
+            insert(0),
+        }),
+        snip(
             {
-                text('!['),
-                insert(1),
-                text(']('),
-                func(function(_, snip)
-                    return snip.env.TM_SELECTED_TEXT[1] or {}
-                end, {}),
-                text(')'),
-                insert(0),
-            }),
-        snip({
                 trig = "log",
                 namr = "log",
-                dscr = "generate a log info with end time"
+                dscr = "generate a log info with end time",
             },
             fmt(
                 [[
@@ -64,7 +64,8 @@ ls.add_snippets(nil, {
                 }
             )
         ),
-        snip({
+        snip(
+            {
                 trig = "mermaid",
             },
             fmt(
@@ -74,12 +75,13 @@ ls.add_snippets(nil, {
                 ```
                 ]],
                 {
-                    insert(0)
+                    insert(0),
                 }
             )
         ),
         -- mermaid snips
-        snip({
+        snip(
+            {
                 trig = "relaIsa",
             },
             fmt(
@@ -88,11 +90,12 @@ ls.add_snippets(nil, {
                 ]],
                 {
                     insert(1, "father"),
-                    insert(0, "son")
+                    insert(0, "son"),
                 }
             )
         ),
-        snip({
+        snip(
+            {
                 trig = "relaReali",
             },
             fmt(
@@ -101,11 +104,12 @@ ls.add_snippets(nil, {
                 ]],
                 {
                     insert(1, "father"),
-                    insert(0, "son")
+                    insert(0, "son"),
                 }
             )
         ),
-        snip({
+        snip(
+            {
                 trig = "relaHasa",
             },
             fmt(
@@ -114,11 +118,9 @@ ls.add_snippets(nil, {
                 ]],
                 {
                     insert(1, "father"),
-                    insert(0, "son")
+                    insert(0, "son"),
                 }
             )
         ),
-
-    }
+    },
 })
-

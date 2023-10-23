@@ -1,4 +1,4 @@
-local ls = require('luasnip')
+local ls = require("luasnip")
 
 local snip = ls.snippet
 local text = ls.text_node
@@ -11,18 +11,20 @@ local shellsnips = {
         namr = "head line of bash",
         dscr = "head line of bash",
     }, {
-        text('#!/bin/bash'),
+        text("#!/bin/bash"),
     }),
     snip({
         trig = "func",
         namr = "function of a snip",
         dscr = "head line of bash",
     }, {
-        text('function '), insert(1, 'FuncName '),
-        text { '{', '' },
-        text { '}' }
+        text("function "),
+        insert(1, "FuncName "),
+        text({ "{", "" }),
+        text({ "}" }),
     }),
-    snip({
+    snip(
+        {
             trig = "rangefor",
         },
         fmt(
@@ -39,7 +41,8 @@ local shellsnips = {
             }
         )
     ),
-    snip({
+    snip(
+        {
             trig = "cmdexit",
         },
         fmt(
@@ -63,5 +66,5 @@ local shellsnips = {
 ls.add_snippets(nil, {
     sh = shellsnips,
     bash = shellsnips,
-    zsh = shellsnips
+    zsh = shellsnips,
 })

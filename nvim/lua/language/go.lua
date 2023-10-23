@@ -1,29 +1,36 @@
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
+    local keymapset = vim.keymap.set
+    local lspbuf = vim.lsp.buf
+
     -- Enable completion triggered by <c-x><c-o>
-    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+    vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
     -- Mappings.
     -- See `:help vim.lsp.*` for documentation on any of the below functions
     local bufopts = { noremap = true, silent = true, buffer = bufnr }
-    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
-    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-    vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-    vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
-    vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
-    vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
-    vim.keymap.set('n', '<space>wl', function()
-        print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+    keymapset("n", "gD", lspbuf.declaration, bufopts)
+    keymapset("n", "gd", lspbuf.definition, bufopts)
+    keymapset("n", "K", lspbuf.hover, bufopts)
+    keymapset("n", "gi", lspbuf.implementation, bufopts)
+    keymapset("n", "<C-k>", lspbuf.signature_help, bufopts)
+    keymapset("n", "<space>wa", lspbuf.add_workspace_folder, bufopts)
+    keymapset("n", "<space>wr", lspbuf.remove_workspace_folder, bufopts)
+    keymapset("n", "<space>wl", function()
+        print(vim.inspect(lspbuf.list_workspace_folders()))
     end, bufopts)
-    vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
-    vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
-    vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
-    vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-    vim.keymap.set('n', '<space>f', function()
+    keymapset("n", "<space>D", lspbuf.type_definition, bufopts)
+    keymapset("n", "<space>rn", lspbuf.rename, bufopts)
+    keymapset("n", "<space>ca", lspbuf.code_action, bufopts)
+    keymapset("n", "gr", lspbuf.references, bufopts)
+    keymapset("n", "<space>f", function()
         require("go.format").gofmt()
         require("go.format").goimport()
+    end, bufopts)
+    keymapset("n", "ut", ":GoTestFunc<CR>", bufopts)
+    keymapset("n", "cf", function()
+        require("go.term").close()
     end, bufopts)
 end
 
@@ -39,21 +46,22 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     pattern = "*.go",
     callback = function()
         require("go.format").gofmt()
-        require('go.format').goimport()
+        require("go.format").goimport()
     end,
     group = format_sync_grp,
 })
 
-require('lspconfig')['gopls'].setup {
+require("lspconfig")["gopls"].setup({
     on_attach = on_attach,
-    capabilities = require('cmp_nvim_lsp').default_capabilities(),
+    capabilities = require("cmp_nvim_lsp").default_capabilities(),
 
     flags = lsp_flags,
-}
+})
+--keymaps--
 
 -- snips --
 
-local ls = require('luasnip')
+local ls = require("luasnip")
 
 local snip = ls.snippet
 local func = ls.function_node
@@ -61,127 +69,45 @@ local text = ls.text_node
 local fmt = require("luasnip.extras.fmt").fmt
 local insert = ls.insert_node
 
-local date = function() return { os.date('%Y-%m-%d %H:%M:%S') } end
+local date = function()
+    return { os.date("%Y-%m-%d %H:%M:%S") }
+end
 
 ls.add_snippets(nil, {
     go = {
         snip({
-                trig = "func",
-                namr = "func",
-                dscr = "function",
-            },
+            trig = "func",
+            namr = "func",
+            dscr = "function",
+        }, {
+            text({ "func " }),
+            insert(1, "Name"),
+            text({ "() {", "" }),
+            text({ "}" }),
+        }),
+        snip({
+            trig = "struct",
+            namr = "struct",
+            dscr = "struct",
+        }, {
+            text({ "type " }),
+            insert(1, "Name"),
+            text({ " struct {", "" }),
+            text({ "}" }),
+        }),
+        snip({
+            trig = "interface",
+            namr = "interface",
+            dscr = "interface",
+        }, {
+            text({ "type " }),
+            insert(1, "Name"),
+            text({ " interface {", "" }),
+            text({ "}" }),
+        }),
+        snip(
             {
-                text { 'func ' }, insert(1, "Name"), text { '() {', '' }, text { '}' }
-            }),
-        snip({
-                trig = "struct",
-                namr = "struct",
-                dscr = "struct",
-            },
-            {
-                text { 'type ' }, insert(1, "Name"), text { ' struct {', '' }, text { '}' }
-            }),
-        snip({
-                trig = "interface",
-                namr = "interface",
-                dscr = "interface",
-            },
-            {
-                text { 'type ' }, insert(1, "Name"), text { ' interface {', '' }, text { '}' }
-            }),
-        snip({
-                trig = "galoistest",
-                namr = "galoistest",
-                dscr = "galoistest",
-            },
-            fmt(
-                [[
-                import (
-                    "context"
-                    "testing"
-
-                    "github.com/golang/mock/gomock"
-                    "github.com/onsi/gomega"
-                    "code.byted.org/gopkg/gomonkey"
-                )
-
-                func Test<>(t *testing.T) {
-                    mockCtrl := gomock.NewController(t)
-
-                    testCases := []struct {
-                        name       string
-                        mock   func() []*gomonkey.Patches
-                    }{
-                    }
-                    for _, tt := range testCases {
-                        t.Run(tt.name, func(t *testing.T) {
-                            if tt.mockFunc != nil {
-                                tt.mockFunc()
-                            }
-                            if err := <>(context.Background(), tt.msg); (err != nil) != tt.wantErr {
-                                t.Errorf("<>() error = %v, wantErr %v", err, tt.wantErr)
-                            }
-                        })
-                    }
-                }
-                ]],
-                {
-                    insert(2, "behave"),
-                    insert(1, "func"),
-                    insert(0, "func"),
-                },
-                {
-                    delimiters = "<>",
-                }
-            )
-        ),
-        snip({
-                trig = "gomonkey",
-            },
-            fmt(
-                [[
-                    testCases := []struct {
-                        desc   string
-                        isErr  bool
-                        errMsg string
-                        mock   func() []*gomonkey.Patches
-                    }{
-                        {
-                            desc:   "request error",
-                            isErr:  true,
-                            mock: func() []*gomonkey.Patches {
-                                patches := []*gomonkey.Patches{}
-                                return append(patches, p)
-                            },
-                        },
-                    }
-
-                    for _, tc := range testCases {
-                        t.Run(tc.desc, func(t *testing.T) {
-                            g := gomega.NewWithT(t)
-                            var patches []*gomonkey.Patches
-                            if tc.mock != nil {
-                                patches = tc.mock()
-                            }
-                            defer func() {
-                                for _, p := range patches {
-                                    if p != nil {
-                                        p.Reset()
-                                    }
-                                }
-                            }()
-                        })
-                    }
-                ]],
-                {
-                },
-                {
-                    delimiters = "<>",
-                }
-            )
-        ),
-        snip({
-                trig = "mkFunc"
+                trig = "mkm",
             },
             fmt(
                 [[
@@ -197,27 +123,30 @@ ls.add_snippets(nil, {
                 {
                     delimiters = "<>",
                 }
-
             )
         ),
-        snip({
-                trig = "gomock"
+        snip(
+            {
+                trig = "mkf",
             },
             fmt(
                 [[
-                mockRepo := <>.NewMockCompletedInstanceRepository(mockCtrl)
+				p := gomonkey.ApplyFunc(<>,
+					func() () {
+					})
+
             ]],
                 {
-                    insert(1, "repo"),
+                    insert(0, "func"),
                 },
                 {
                     delimiters = "<>",
                 }
-
             )
         ),
-        snip({
-                trig = "err"
+        snip(
+            {
+                trig = "err",
             },
             fmt(
                 [[
@@ -225,12 +154,33 @@ ls.add_snippets(nil, {
 
                 }
             ]],
-                {
-                },
+                {},
                 {
                     delimiters = "<>",
                 }
             )
-        )
-    }
+        ),
+        snip(
+            {
+                trig = "patchs",
+            },
+            fmt(
+                [[
+            var patches []*gomonkey.Patches
+			if tt.mocks != nil {
+				patches = tt.mocks()
+			}
+			defer func() {
+				for _, p := range patches {
+					p.Reset()
+				}
+			}()
+            ]],
+                {},
+                {
+                    delimiters = "<>",
+                }
+            )
+        ),
+    },
 })

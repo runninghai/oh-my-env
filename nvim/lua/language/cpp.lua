@@ -1,50 +1,25 @@
-local util = require 'lspconfig.util'
-local on_attach = function(client, bufnr)
-    -- Enable completion triggered by <c-x><c-o>
-    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-
-    -- Mappings.
-    -- See `:help vim.lsp.*` for documentation on any of the below functions
-    local bufopts = { noremap = true, silent = true, buffer = bufnr }
-    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
-    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-    vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-    vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
-    vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
-    vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
-    vim.keymap.set('n', '<space>wl', function()
-        print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-    end, bufopts)
-    vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
-    vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
-    vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
-    vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-    vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
-end
-
-local lsp_flags = {
-    -- This is the default in Nvim 0.7+
-    debounce_text_changes = 150,
-}
+local util = require("lspconfig.util")
 
 local root_files = {
-    '.clangd',
-    '.clang-tidy',
-    '.clang-format',
-    'compile_commands.json',
-    'compile_flags.txt',
-    'build.sh',     -- buildProject
-    'configure.ac', -- AutoTools
-    'run',
-    'compile',
+    ".clangd",
+    ".clang-tidy",
+    ".clang-format",
+    "compile_commands.json",
+    "compile_flags.txt",
+    "build.sh",  -- buildProject
+    "configure.ac", -- AutoTools
+    "run",
+    "compile",
 }
 
+local lsp_base = require("language.basic")
+
 local settings = {
-    on_attach = on_attach,
-    capabilities = require('cmp_nvim_lsp').default_capabilities(),
-    flags = lsp_flags,
-    cmd = { "clangd",
+    on_attach = lsp_base.on_attach,
+    capabilities = require("cmp_nvim_lsp").default_capabilities(),
+    flags = lsp_base.lsp_flags,
+    cmd = {
+        "clangd",
         "--all-scopes-completion",
         "--background-index",
         "--clang-tidy",
@@ -57,7 +32,7 @@ local settings = {
         "--function-arg-placeholders",
         "--header-insertion=iwyu",
         "--pch-storage=memory", -- could also be disk
-        "-j=4",                 -- number of workers
+        "-j=4",           -- number of workers
         -- "--resource-dir="
         "--log=error",
         --[[ "--query-driver=/usr/bin/g++", ]]
@@ -70,9 +45,7 @@ local settings = {
     init_options = {
         compilationDatabasePath = "build",
     },
-    commands = {
-
-    },
+    commands = {},
 }
 
-require('lspconfig')['clangd'].setup(settings)
+require("lspconfig")["clangd"].setup(settings)
