@@ -11,7 +11,7 @@ nvim_create_autocmd("BufWritePre", {
 
 require("neodev").setup()
 require("lspconfig")["lua_ls"].setup({
-    on_attach = lsp_basic.on_attach,
+    on_attach = lsp_basic.generate_on_attach(),
     flags = lsp_basic.lsp_flags,
     capabilities = require("cmp_nvim_lsp").default_capabilities(),
     settings = {

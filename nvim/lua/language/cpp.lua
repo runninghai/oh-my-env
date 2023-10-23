@@ -15,7 +15,7 @@ local root_files = {
 local lsp_base = require("language.basic")
 
 local settings = {
-    on_attach = lsp_base.on_attach,
+    on_attach = lsp_base.generate_on_attach(),
     capabilities = require("cmp_nvim_lsp").default_capabilities(),
     flags = lsp_base.lsp_flags,
     cmd = {

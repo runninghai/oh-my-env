@@ -15,7 +15,7 @@ local lsp_flags = {
 }
 
 require("lspconfig")["pyright"].setup({
-    on_attach = lsp_basic.on_attach,
+    on_attach = lsp_basic.generate_on_attach(),
     capabilities = require("cmp_nvim_lsp").default_capabilities(),
 
     flags = lsp_basic.lsp_flags,
