@@ -20,4 +20,5 @@ g.mapleader = "\\"
 -- set termguicolors to enable highlight groups
 opt.termguicolors = true
 
+
 g.python3_host_prog = "/home/wherever230/miniconda3/envs/manim/bin/python"

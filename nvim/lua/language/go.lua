@@ -21,10 +21,8 @@ require("lspconfig")["gopls"].setup({
 
     flags = lsp_basic.lsp_flags,
 })
---keymaps--
 
 -- snips --
-
 local ls = require("luasnip")
 
 local snip = ls.snippet
