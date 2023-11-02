@@ -47,4 +47,12 @@ function suggestFetchImage {
 }
 compdef suggestFetchImage fetchImage
 
+
+_tools-archive() {
+    res=($(task-parser "${words[@]:1}"))
+    compadd -a res
+}
+compdef _tools-archive tools-archive
+compdef _tools-archive task-add
+compdef _tools-archive task-read
 # vim: set ft=bash :
