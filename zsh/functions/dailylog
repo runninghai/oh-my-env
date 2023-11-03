@@ -47,6 +47,30 @@ function suggestFetchImage {
 }
 compdef suggestFetchImage fetchImage
 
+task-start() {
+    addDailyLog 
+    curTime=$(date +"%Y-%m-%d %H:%M:%S")
+    logFile=$(dailyLog)/README.md
+    echo "# $curTime" >> $logFile
+    echo "# 任务" >> $logFile
+
+    local joined_params=""
+    local IFS="|"  # 设置分隔符为|
+
+    # 使用 "$*" 变量表示所有的输入参数
+    for param in "$*"; do
+      # 拼接参数
+      joined_params+="|$param"
+    done
+
+    # 移除开头的分隔符
+    joined_params="${joined_params:1}"
+
+
+    echo "$joined_params" >> $logFile
+    echo "# 内容" >> $logFile
+}
+
 
 _tools-archive() {
     res=($(task-parser "${words[@]:1}"))
@@ -55,4 +79,5 @@ _tools-archive() {
 compdef _tools-archive tools-archive
 compdef _tools-archive task-add
 compdef _tools-archive task-read
+compdef _tools-archive task-start
 # vim: set ft=bash :
