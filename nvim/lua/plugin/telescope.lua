@@ -9,30 +9,32 @@ vim.keymap.set("n", "<leader>ld", builtin.lsp_document_symbols, {})
 vim.keymap.set("n", "<leader>li", builtin.lsp_incoming_calls, {})
 vim.keymap.set("n", "<leader>lr", builtin.lsp_references, {})
 
-require("telescope").setup({
-    defaults = {
-        initial_mode = "normal",
-        path_display = {
-            shorten = 3,
-        },
-        grep = {
-            ignore_case = true,
-        },
-        mappings = {
-            i = {
-                ["<C-h>"] = "which_key",
-            },
-        },
+require("telescope").setup {
+  defaults = {
+    initial_mode = "normal",
+    -- Format path as "file.txt (path\to\file\)"
+    path_display = function(opts, path)
+      local tail = require("telescope.utils").path_tail(path)
+      return string.format("%s (%s)", tail, path), { { { 1, #tail }, "Constant" } }
+    end,
+    grep = {
+      ignore_case = true,
     },
-    pickers = {
-        live_grep = {
-            initial_mode = "insert",
-        },
-        find_files = {
-            initial_mode = "insert",
-        },
+    mappings = {
+      i = {
+        ["<C-h>"] = "which_key",
+      },
     },
-    extensions = {},
-})
+  },
+  pickers = {
+    live_grep = {
+      initial_mode = "insert",
+    },
+    find_files = {
+      initial_mode = "insert",
+    },
+  },
+  extensions = {},
+}
 
 require("telescope").load_extension("fzf")
