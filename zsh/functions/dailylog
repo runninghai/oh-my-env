@@ -51,6 +51,7 @@ task-start() {
     addDailyLog 
     curTime=$(date +"%Y-%m-%d %H:%M:%S")
     logFile=$(dailyLog)/README.md
+    echo >> $logFile
     echo "# $curTime" >> $logFile
     echo "# 任务" >> $logFile
 
@@ -76,7 +77,7 @@ _tools-archive() {
     res=($(task-parser "${words[@]:1}"))
     compadd -a res
 }
-compdef _tools-archive tools-archive
+compdef _tools-archive task-archive
 compdef _tools-archive task-add
 compdef _tools-archive task-read
 compdef _tools-archive task-start
