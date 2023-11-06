@@ -6,6 +6,7 @@ function addDailyLog {
     mkdir -p $log/images
 
     touch $log/README.md
+    echo "[TOC]" >> $log/README.md
 }
 addDailyLog
 
@@ -50,10 +51,10 @@ compdef suggestFetchImage fetchImage
 task-start() {
     addDailyLog 
     curTime=$(date +"%Y-%m-%d %H:%M:%S")
-    logFile=$(dailyLog)/README.md
+    logFile=${CODEPATH}/git/log/$(dailyLog)/README.md
     echo >> $logFile
     echo "# $curTime" >> $logFile
-    echo "# 任务" >> $logFile
+    echo "## 任务" >> $logFile
 
     local joined_params=""
     local IFS="|"  # 设置分隔符为|
@@ -69,7 +70,7 @@ task-start() {
 
 
     echo "$joined_params" >> $logFile
-    echo "# 内容" >> $logFile
+    echo "## 内容" >> $logFile
 }
 
 
