@@ -3,8 +3,11 @@ function addDailyLog {
     month=$(date +"%m")
     today=$(date +"%d")
     log=$LOGPATH/log/$year/$month/$today
-    mkdir -p $log/images
 
+    if [ -e "$log/README.md" ];then
+        return
+    fi
+    mkdir -p $log/images
     touch $log/README.md
     echo "[TOC]" >> $log/README.md
 }
@@ -52,25 +55,30 @@ task-start() {
     addDailyLog 
     curTime=$(date +"%Y-%m-%d %H:%M:%S")
     logFile=${CODEPATH}/git/log/$(dailyLog)/README.md
+    curTask=${CODEPATH}/git/log/task/cur
     echo >> $logFile
     echo "# $curTime" >> $logFile
     echo "## 任务" >> $logFile
 
     local joined_params=""
-    local IFS="|"  # 设置分隔符为|
 
-    # 使用 "$*" 变量表示所有的输入参数
-    for param in "$*"; do
-      # 拼接参数
-      joined_params+="|$param"
+
+    array=("${*[@]:1}")
+    for param in "$array"; do
+      joined_params+="$param "
     done
 
-    # 移除开头的分隔符
-    joined_params="${joined_params:1}"
+    joined_params="${joined_params% }"
 
-
-    echo "$joined_params" >> $logFile
+    echo "${joined_params// /|}" >> $logFile
     echo "## 内容" >> $logFile
+    echo $joined_params > $curTask
+}
+
+task-info() {
+    array=("${*[@]:1}")
+    output=$($GOPATH/bin/task-info $array)
+    echo $output | jq .
 }
 
 
@@ -80,6 +88,6 @@ _tools-archive() {
 }
 compdef _tools-archive task-archive
 compdef _tools-archive task-add
-compdef _tools-archive task-read
+compdef _tools-archive task-info
 compdef _tools-archive task-start
 # vim: set ft=bash :
