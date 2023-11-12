@@ -4,6 +4,7 @@ alias vim="nvim"
 alias vi="nvim"
 alias lg="lazygit"
 alias mypc="ssh wherever230@192.168.1.6"
+alias remote="ssh root@101.37.246.120"
 #alias walk="walk --icons"
 system=$(uname -s)
 if [[ "$system" = "Linux" ]];then

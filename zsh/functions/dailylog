@@ -5,8 +5,8 @@ function addDailyLog {
     log=$LOGPATH/log/$year/$month/$today
 
     if [ -e "$log/README.md" ];then
-        return
-    fi
+        return 
+    fi 
     mkdir -p $log/images
     touch $log/README.md
     echo "[TOC]" >> $log/README.md
@@ -51,43 +51,10 @@ function suggestFetchImage {
 }
 compdef suggestFetchImage fetchImage
 
-task-start() {
-    addDailyLog 
-    curTime=$(date +"%Y-%m-%d %H:%M:%S")
-    logFile=${CODEPATH}/git/log/$(dailyLog)/README.md
-    curTask=${CODEPATH}/git/log/task/cur
-    echo >> $logFile
-    echo "# $curTime" >> $logFile
-    echo "## 任务" >> $logFile
-
-    local joined_params=""
-
-
-    array=("${*[@]:1}")
-    for param in "$array"; do
-      joined_params+="$param "
-    done
-
-    joined_params="${joined_params% }"
-
-    echo "${joined_params// /|}" >> $logFile
-    echo "## 内容" >> $logFile
-    echo $joined_params > $curTask
-}
-
-task-info() {
-    array=("${*[@]:1}")
-    output=$($GOPATH/bin/task-info $array)
-    echo $output | jq .
-}
-
-
-_tools-archive() {
-    res=($(task-parser "${words[@]:1}"))
+_task() {
+    res=($(task parse "${words[@]:2}"))
     compadd -a res
 }
-compdef _tools-archive task-archive
-compdef _tools-archive task-add
-compdef _tools-archive task-info
-compdef _tools-archive task-start
+
+compdef _task task
 # vim: set ft=bash :
