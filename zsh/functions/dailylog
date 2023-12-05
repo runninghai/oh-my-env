@@ -4,12 +4,12 @@ function addDailyLog {
     today=$(date +"%d")
     log=$LOGPATH/log/$year/$month/$today
 
-    if [ -e "$log/README.md" ];then
-        return 
-    fi 
+    #if [ -e "$log/README.md" ];then
+    #    return 
+    #fi 
     mkdir -p $log/images
-    touch $log/README.md
-    echo "[TOC]" >> $log/README.md
+    #touch $log/README.md
+    #echo "[TOC]" >> $log/README.md
 }
 addDailyLog
 
@@ -57,4 +57,35 @@ _task() {
 }
 
 compdef _task task
+
+
+function Timer {
+    cd $CODEPATH/git/log 
+    git pull
+    timer_duration=$((25 * 60))
+    timer_duration=$((1 * 5))
+    
+    # 获取当前时间戳
+    start_time=$(date +%s)
+    
+    # 计算定时器结束时间戳
+    end_time=$((start_time + timer_duration))
+    echo $$ > ~/.timer.pid
+    
+    # 等待定时器到期
+    sleep $timer_duration
+
+    cd $CODEPATH/git/log 
+
+    if [ -n "$(git status --porcelain)" ]; then
+        git add . 
+        commitInfo=$(cat task/cur)
+        git commit -m "$commitInfo" 
+        git push 
+    fi
+
+    
+    osascript -e 'tell application "System Events" to keystroke "q" using {control down, command down}' 
+}
+alias timer='Timer 2>&1 > ~/.timer.log &'
 # vim: set ft=bash :

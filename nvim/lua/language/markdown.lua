@@ -41,9 +41,11 @@ ls.add_snippets(nil, {
             text("!["),
             insert(1),
             text("]("),
-            func(function(_, snip)
-                return snip.env.TM_SELECTED_TEXT[1] or {}
+            text("/log/"),
+            func(function()
+                return { os.date("%Y/%m/%d") }
             end, {}),
+            text("/images/"),
             text(")"),
             insert(0),
         }),
